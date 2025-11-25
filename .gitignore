@@ -134,9 +134,5 @@ dmypy.json
 Thumbs.db
 
 # Project specific
-outputs/plots/*.png
-outputs/plots/*.jpg
-outputs/plots/*.jpeg
-models/
 __pycache__/
 *.pyc
