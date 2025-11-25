@@ -1,4 +1,5 @@
-# Turkish Spam Data Set Classification with KNN
+# Turkish-Spam-Mail-Detection
+Spam vs. ham classification for Turkish emails using K-Nearest Neighbors (KNN). Includes preprocessing with stopwords removal, word frequency analysis, and visualization. Built with Python (NumPy, Pandas, Matplotlib, scikit-learn). Dataset: Turkish Spam V01 (825 emails).
 
 ## Importing Modules
 
