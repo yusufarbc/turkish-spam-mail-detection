@@ -241,6 +241,9 @@
                         <a class="nav-link" href="#stats">Statistics</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#visualizations">Visualizations</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#tech">Technologies</a>
                     </li>
                     <li class="nav-item">
@@ -482,6 +485,61 @@
                                 Best K = 3<br>
                                 Accuracy: 81.85%</code>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section id="visualizations" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Visualizations</h2>
+                <p class="lead text-muted">Model performance and data analysis visualizations</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card shadow border-0 h-100">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-bar-chart-fill text-primary me-2"></i>Confusion Matrix</h5>
+                            <img src="outputs/plots/confusion_matrix.png" alt="Confusion Matrix" class="img-fluid rounded mb-3" style="border: 2px solid #e2e8f0;">
+                            <p class="text-muted mb-0">Model performance visualization showing true positives, true negatives, false positives, and false negatives for spam and ham classification.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow border-0 h-100">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-graph-up text-success me-2"></i>Ham Email Distribution</h5>
+                            <img src="outputs/plots/hist_ham.png" alt="Ham Word Count" class="img-fluid rounded mb-3" style="border: 2px solid #e2e8f0;">
+                            <p class="text-muted mb-0">Word count distribution in legitimate (ham) emails showing the frequency of email lengths after preprocessing.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow border-0 h-100">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-graph-down text-danger me-2"></i>Spam Email Distribution</h5>
+                            <img src="outputs/plots/hist_spam.png" alt="Spam Word Count" class="img-fluid rounded mb-3" style="border: 2px solid #e2e8f0;">
+                            <p class="text-muted mb-0">Word count distribution in spam emails revealing typical patterns in spam message lengths.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow border-0 h-100">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-text-left text-primary me-2"></i>Word Frequency Analysis</h5>
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <img src="outputs/plots/plot_ham.png" alt="Ham Words" class="img-fluid rounded mb-2" style="border: 2px solid #e2e8f0;">
+                                </div>
+                                <div class="col-12">
+                                    <img src="outputs/plots/plot_spam.png" alt="Spam Words" class="img-fluid rounded" style="border: 2px solid #e2e8f0;">
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0 mt-3">Most frequent words (100-150 occurrences) in ham and spam emails, helping identify distinguishing features.</p>
                         </div>
                     </div>
                 </div>

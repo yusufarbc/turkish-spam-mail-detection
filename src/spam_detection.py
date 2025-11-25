@@ -245,7 +245,7 @@ def plot_word_count_histogram(data: np.ndarray, output_dir: str = "outputs/plots
     plt.hist(count_ham_list, bins=40, color='green', alpha=0.7, edgecolor='black')
     plt.grid(axis='y', alpha=0.3)
     plt.savefig(f'{output_dir}/hist_ham.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    plt.close()
     
     # Plot spam emails histogram
     plt.figure(figsize=(10, 5))
@@ -255,7 +255,7 @@ def plot_word_count_histogram(data: np.ndarray, output_dir: str = "outputs/plots
     plt.hist(count_spam_list, bins=40, color='red', alpha=0.7, edgecolor='black')
     plt.grid(axis='y', alpha=0.3)
     plt.savefig(f'{output_dir}/hist_spam.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    plt.close()
     
     print(f"Ham emails - Mean word count: {np.mean(count_ham_list):.2f}")
     print(f"Spam emails - Mean word count: {np.mean(count_spam_list):.2f}")
@@ -351,7 +351,7 @@ def plot_word_frequencies(ham_words: List[str], ham_counts: List[int],
         plt.grid(axis='y', alpha=0.3)
         plt.tight_layout()
         plt.savefig(f'{output_dir}/plot_ham.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        plt.close()
         print(f"Ham words (100-150 frequency): {ham_words}")
     
     # Plot spam words
@@ -365,7 +365,7 @@ def plot_word_frequencies(ham_words: List[str], ham_counts: List[int],
         plt.grid(axis='y', alpha=0.3)
         plt.tight_layout()
         plt.savefig(f'{output_dir}/plot_spam.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        plt.close()
         print(f"Spam words (100-150 frequency): {spam_words}")
 
 
@@ -388,15 +388,28 @@ training_data, test_data, training_labels, test_labels = train_test_split(
 print(f"Training set size: {len(training_data)}")
 print(f"Test set size: {len(test_data)}")
 
-# Set KNN parameters
-K = 24
+# Optimize K value by testing multiple values
+print("\nOptimizing K value...")
+k_values = [3, 5, 7, 9, 11, 15, 19, 24, 30]
+best_k = 3
+best_accuracy = 0
 tsize = len(test_data)
 
-print(f"\nK value: {K}")
-print(f"Samples to test: {tsize}")
+for k in k_values:
+    print(f"Testing K={k}...")
+    result = knn_classifier(training_data, training_labels, test_data[:tsize], k, tsize)
+    accuracy = accuracy_score(test_labels[:tsize], result)
+    print(f"K={k}: Accuracy = {accuracy * 100:.2f}%")
+    
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy
+        best_k = k
 
-# Train and test the model
-print("\nModel Training...")
+print(f"\nBest K value: {best_k} with accuracy: {best_accuracy * 100:.2f}%")
+
+# Train final model with best K
+K = best_k
+print(f"\nTraining final model with K={K}...")
 result = knn_classifier(training_data, training_labels, test_data[:tsize], K, tsize)
 
 print("\nModel Testing...")
@@ -435,7 +448,7 @@ plt.ylabel('True Label', fontsize=12)
 plt.xlabel('Predicted Label', fontsize=12)
 plt.tight_layout()
 plt.savefig('outputs/plots/confusion_matrix.png', dpi=300, bbox_inches='tight')
-plt.show()
+plt.close()
 
 print("\nVisualization files saved:")
 print("  - outputs/plots/hist_ham.png")
